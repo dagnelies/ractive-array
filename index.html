@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<title>Array plugin for Ractive.js</title>
+
+	<!-- CSS -->
+	<link href='http://fonts.googleapis.com/css?family=Voltaire' rel='stylesheet' type='text/css'>
+	<link rel='stylesheet' href='style.css'>
+	
+	<!-- Ractive -->
+	<script src='http://cdn.ractivejs.org/edge/ractive.js'></script>
+	<script src='https://raw.github.com/ractivejs/ractive-transitions-fade/master/dist/ractive-transitions-fade.js'></script>
+	
+	<!-- this plugin -->
+	<script src='ractive-array.js'></script>
+	
+	<style>
+	.icon-btn {
+		opacity: 0.5;
+		cursor: pointer;
+	}
+	.icon-btn:hover {
+		opacity: 1;
+	}
+	</style>
+</head>
+
+<body>
+
+	<a class='forkme' href='https://github.com/dagnelies/ractive-array'>Fork me on GitHub</a>
+
+	<header>
+		<h1>Array plugin for Ractive.js</h1>
+		<p class='strap'>
+			<span class='download'>Debug: &nbsp;&nbsp; <a href='ractive-array.js'>ractive-array.js</a><br/>
+			Minified: <a href='ractive-array.min.js'>ractive-array.min.js</a></span>
+			<span class='more-plugins'>more plugins at <a href='http://docs.ractivejs.org/latest/plugins'>docs.ractivejs.org/latest/plugins</a></span>
+		</p>
+	</header>
+	
+	<main>
+		<p>This plugin provides utility functions to deal with arrays in ractive. It's fairly basic but quite useful.</p>
+		<ul>
+			<li><code>list_add(@keypath)</code> Adds the item to the list (creates it if necessary) and returns a Promise.</li>
+			<li><code>list_del(@keypath)</code> Removes the item and returns a Promise.</li>
+			<li><code>list_up(@keypath)</code> Swaps the item with the previous one and returns a Promise.</li>
+			<li><code>list_down(@keypath)</code> Swaps the item with the next one and returns a Promise.</li>
+			<li><code>list_isFirst(@keypath)</code> Returns 'true' if it is the first item in the list, 'false' otherwise.</li>
+			<li><code>list_isLast(@keypath)</code> Returns 'true' if it is the last item in the list, 'false' otherwise.</li>
+		</ul>
+
+		<div id='demo' class='clearfix'></div>
+
+		<pre id='demo-template-view' class='prettyprint lang-html'></pre>
+		
+		<pre id='demo-code-view' class='prettyprint lang-js'></pre>
+	</main>
+
+	<!-- add additional info such as your homepage here, if you want -->
+	<footer>
+		<p>Copyright &copy; 2015 Arnaud Dagnelies. Licensed MIT</p>
+	</footer>
+
+	<!-- Demo template -->
+	<script id='demo-template' type='text/ractive'>
+		<table style="width:100%;">
+			<thead>
+				<tr>
+					<th style="width:40%;">Name</th>
+					<th style="width:40%;">Email</th>
+					<th style="width:20%;"></th>
+				</tr>
+			</thead>
+			<tbody>
+			{{#each users}}
+				<tr intro="fade" outro="fade">
+					<td><input style="width:95%;" value="{{.name}}" /></td>
+					<td><input style="width:95%;" value="{{.email}}" /></td>
+					<td>
+						<img class="icon-btn" src="img/up.png" on-click="list_up(@keypath)" />
+						<img class="icon-btn" src="img/down.png" on-click="list_down(@keypath)" />
+						<img class="icon-btn" src="img/del.png" on-click="list_del(@keypath)" />
+					</td>
+				</tr>
+			{{/each}}
+			</tbody>
+		</table>
+		<button on-click="list_add('users', {})">Add user</button>
+	</script>
+
+
+
+	<!-- Demo code -->
+	<script id='demo-code'>
+		ractive = new Ractive({
+			el: 'demo',
+			template: '#demo-template',
+			data: {
+				users: [
+					{
+						name: "Alice",
+						email: "alice@wonder.land"
+					},
+					{
+						name: "Bob",
+						email: "bob@nowowanno.cry"
+					},
+					{
+						name: "Charlie",
+						email: "charlie@angels.biz"
+					}
+				]
+			}
+		});
+	</script>
+
+	<!-- Insert code into the page -->
+	<script src='prettify.js'></script>
+	<script src='demo.js'></script>
+</body>
+</html>
