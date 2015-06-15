@@ -73,7 +73,7 @@ Ractive.defaults.list_move = function(keypath, from, to) {
 /**
  * Returns 'true' if it is the first item in the list, 'false' otherwise.
  */
-Ractive.defaults.list_isFirst = function(keypath) {
+Ractive.defaults.data.list_isFirst = function(keypath) {
 	var ki = this.list_splitKeypath(keypath)
 	return ki.index === 0
 }
@@ -81,7 +81,7 @@ Ractive.defaults.list_isFirst = function(keypath) {
 /**
  * Returns 'true' if it is the last item in the list, 'false' otherwise.
  */
-Ractive.defaults.list_isLast = function(keypath) {
+Ractive.defaults.data.list_isLast = function(keypath) {
 	var ki = this.list_splitKeypath(keypath)
 	var len = this.get(ki.keypath + '.length')
 	return (ki.index === len - 1)

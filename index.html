@@ -23,6 +23,10 @@
 	.icon-btn:hover {
 		opacity: 1;
 	}
+	.icon-btn.disabled {
+		opacity: 0.15;
+		pointer-events:none;
+	}
 	</style>
 </head>
 
@@ -78,8 +82,9 @@
 					<td><input style="width:95%;" value="{{.name}}" /></td>
 					<td><input style="width:95%;" value="{{.email}}" /></td>
 					<td>
-						<img class="icon-btn" src="img/up.png" on-click="list_up(@keypath)" />
-						<img class="icon-btn" src="img/down.png" on-click="list_down(@keypath)" />
+						
+						<img class="icon-btn {{#if list_isFirst(@keypath)}}disabled{{/if}}" src="img/up.png" on-click="list_up(@keypath)" />
+						<img class="icon-btn {{#if list_isLast(@keypath)}}disabled{{/if}}" src="img/down.png" on-click="list_down(@keypath)" />
 						<img class="icon-btn" src="img/del.png" on-click="list_del(@keypath)" />
 					</td>
 				</tr>
