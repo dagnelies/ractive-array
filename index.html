@@ -10,7 +10,7 @@
 	
 	<!-- Ractive -->
 	<script src='http://cdn.ractivejs.org/latest/ractive.js'></script>
-	<script src='https://raw.github.com/ractivejs/ractive-transitions-fade/master/dist/ractive-transitions-fade.js'></script>
+	<script src='ractive-transitions.js'></script>
 	
 	<!-- this plugin -->
 	<script src='ractive-array.min.js'></script>
@@ -50,8 +50,6 @@
 			<li><code>list_del(@keypath)</code> Removes the item and returns a Promise.</li>
 			<li><code>list_up(@keypath)</code> Swaps the item with the previous one and returns a Promise.</li>
 			<li><code>list_down(@keypath)</code> Swaps the item with the next one and returns a Promise.</li>
-			<li><code>list_isFirst(@keypath)</code> Returns 'true' if it is the first item in the list, 'false' otherwise.</li>
-			<li><code>list_isLast(@keypath)</code> Returns 'true' if it is the last item in the list, 'false' otherwise.</li>
 		</ul>
 
 		<div id='demo' class='clearfix'></div>
@@ -83,8 +81,8 @@
 					<td><input style="width:95%;" value="{{.email}}" /></td>
 					<td>
 						
-						<img class="icon-btn {{#if list_isFirst(@keypath)}}disabled{{/if}}" src="img/up.png" on-click="list_up(@keypath)" />
-						<img class="icon-btn {{#if list_isLast(@keypath)}}disabled{{/if}}" src="img/down.png" on-click="list_down(@keypath)" />
+						<img class="icon-btn {{#if @index == 0}}disabled{{/if}}" src="img/up.png" on-click="list_up(@keypath)" />
+						<img class="icon-btn {{#if @index == ../length - 1}}disabled{{/if}}" src="img/down.png" on-click="list_down(@keypath)" />
 						<img class="icon-btn" src="img/del.png" on-click="list_del(@keypath)" />
 					</td>
 				</tr>
