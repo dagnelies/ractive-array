@@ -69,3 +69,22 @@ Ractive.defaults.list_move = function(keypath, from, to) {
 		return self.splice(keypath, to, 0, val)
 	})
 }
+
+/**
+ * Removes the first item at the given keypath.
+ * Returns a Promise.
+ */
+Ractive.defaults.list_pop_first = function(keypath) {
+	return this.splice( keypath, 0, 1 )
+}
+
+/**
+ * Removes the last item at the given keypath.
+ * Returns a Promise.
+ */
+Ractive.defaults.list_pop_last = function(keypath) {
+	var len = this.get(keypath + '.length')
+	if( len <= 0 )
+		return null
+	return this.splice( keypath, len - 1, 1 )
+}
